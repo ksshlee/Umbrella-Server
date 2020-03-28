@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import pymysql
+pymysql.version_info = (1, 3, 13, "final", 0)
+pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -77,8 +80,12 @@ WSGI_APPLICATION = 'Umbrella.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Umbrella', # DB명
+        'USER': 'UmbrellaAdmin', # 데이터베이스 계정
+        'PASSWORD': 'adminadmin123', # 계정 비밀번호
+        'HOST': 'localhost', # 데이테베이스 주소(IP)
+        'PORT': '3306', # 데이터베이스 포트(보통은 3306)
     }
 }
 
@@ -105,9 +112,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
