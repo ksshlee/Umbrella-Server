@@ -17,12 +17,12 @@ def valid(result):
     except ObjectDoesNotExist:
         return False
 
+    print(result)
 
     # 검증
     # 생성날짜가 list 일 경우
     #  2개 비교해서 하나라도 일치하면 true
     if isinstance(creation_date, list):
-        print(creation_date[0] == db_result.creation_date)
         if creation_date[0] == db_result.creation_date or creation_date[1] == db_result.creation_date:
             # organization 이 둘다 none 이 아닐 경우
             if organization is not None and db_result.organization is not None:

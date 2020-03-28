@@ -7,6 +7,10 @@ from .key_features.valid_url import valid
 from django.http import HttpResponse
 
 # Create your views here.
+def index(request):
+    return render(request, 'index.html')
+
+
 @csrf_exempt
 def valid_url(request):
     if request.method == 'POST':
