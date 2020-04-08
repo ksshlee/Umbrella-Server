@@ -11,13 +11,11 @@ def valid(result):
 
     # 존재 하지 않을때 예외 처리
     try:
-        # Upper 필수
-        # upper 로 모두 대문자화
         db_result = Urldata.objects.get(domain_name=domain_name_result.upper())# 해당 db 값으로 불러오기
     except ObjectDoesNotExist:
-        return False
+        result['valid'] = False
+        return result
 
-    print(result)
 
     # 검증
     # 생성날짜가 list 일 경우
@@ -27,12 +25,14 @@ def valid(result):
             # organization 이 둘다 none 이 아닐 경우
             if organization is not None and db_result.organization is not None:
                 if organization == db_result.organization:
-                    return True
+                    result['valid'] = True
+                    return result
     else:
         if creation_date == db_result.creation_date:
             if organization is not None and db_result.organization is not None:
                 if organization == db_result.organization:
-                    return True
+                    result['valid'] = True
+                    return result
 
-
-    return False
+    result['valid'] = False
+    return result
