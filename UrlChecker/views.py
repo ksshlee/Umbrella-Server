@@ -16,7 +16,10 @@ def valid_url(request):
     if request.method == 'POST':
         form = UrlForm(request.POST)
         url = form.data['url'] # form 에서 url 추출
-        results = url_look_up(url) # url whois 로 조회 결과 results에 담기
+        # 만약 Url 이 비어있으면 url 비어있다는 에러
+        if(len(url)<=0):
+            return JsonResponse({'message':'url 비어있음'},status=404)
+        results = url_look_up(url) # url whois 로 조회 결과 results 에 담기
 
     if results is False:
         # url 형식이 아니라서 url 형식 맞는지 알려줘야함
