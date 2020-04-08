@@ -27,9 +27,12 @@ def valid_url(request):
         # 404
         return JsonResponse({'status':'404'},status=404)
     else :
-        if valid(results):
+        # False 가 아니면
+        valid_result = valid(results)
+
+        if valid_result['valid'] is False :
+            #403
+            return JsonResponse({'result': valid_result}, status=403)
+        else:
             # 200
-            return JsonResponse({'status':'200'},status=200)
-        else :
-            # 403 에러
-            return JsonResponse({'status':'403'},status=403)
+            return JsonResponse({'result': valid_result}, status=200)
