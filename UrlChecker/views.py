@@ -21,7 +21,7 @@ def valid_url(request):
             return JsonResponse({'message':'url 비어있음'},status=404)
         results = url_look_up(url) # url whois 로 조회 결과 results 에 담기
 
-    if results is False:
+    if results['domain_name'] is None:
         # url 형식이 아니라서 url 형식 맞는지 알려줘야함
         # 아니면 url 의 whois 조회가 안되는거임
         # 404
