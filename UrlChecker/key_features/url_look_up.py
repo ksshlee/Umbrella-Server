@@ -3,15 +3,18 @@ from datetime import datetime
 import whois
 
 def url_look_up(url):
+    # data whois 조회
     data = whois.whois(url)
+    # 도메인 이름만 추출
     domain_name = data['domain_name']
+    #  생성날짜 추출
     creation_date = data['creation_date']
     try:
+        # 조직이름 추출
         organization = data['org']
     except KeyError:
+        #  없으면 None
         organization = None
-
-    # TODO : 만약 url 형태가 아니여서 whois 예외처리
 
     result = {'domain_name': domain_name, 'creation_date': creation_date, 'organization': organization}
 
