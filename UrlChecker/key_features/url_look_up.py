@@ -9,13 +9,5 @@ def url_look_up(url):
     domain_name = data['domain_name']
     #  생성날짜 추출
     creation_date = data['creation_date']
-    try:
-        # 조직이름 추출
-        organization = data['org']
-    except KeyError:
-        #  없으면 None
-        organization = None
-
-    result = {'domain_name': domain_name, 'creation_date': creation_date, 'organization': organization}
-
+    result = {'domain_name': domain_name, 'creation_date': creation_date}
     return result

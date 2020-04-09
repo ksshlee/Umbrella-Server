@@ -4,7 +4,6 @@ from django.core.exceptions import ObjectDoesNotExist
 def valid(result):
     domain_name_result = result['domain_name']
     creation_date = result['creation_date']
-    organization = result['organization']
 
     if isinstance(domain_name_result, list):
         domain_name_result = domain_name_result[0]
@@ -22,17 +21,12 @@ def valid(result):
     #  2개 비교해서 하나라도 일치하면 true
     if isinstance(creation_date, list):
         if creation_date[0] == db_result.creation_date or creation_date[1] == db_result.creation_date:
-            # organization 이 둘다 none 이 아닐 경우
-            if organization is not None and db_result.organization is not None:
-                if organization == db_result.organization:
-                    result['valid'] = True
-                    return result
+            result['valid'] = True
+            return result
     else:
         if creation_date == db_result.creation_date:
-            if organization is not None and db_result.organization is not None:
-                if organization == db_result.organization:
-                    result['valid'] = True
-                    return result
+            result['valid'] = True
+            return result
 
     result['valid'] = False
     return result
