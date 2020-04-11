@@ -3,5 +3,5 @@ from UrlChecker import views
 
 
 urlpatterns = [
-    path('url', views.valid_url),
+    path('v1/url', views.v1_valid_url),
 ]

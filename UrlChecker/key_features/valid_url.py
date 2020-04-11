@@ -1,7 +1,7 @@
 from ..models import Urldata
 from django.core.exceptions import ObjectDoesNotExist
 
-def valid(result):
+def v1_valid(result):
     domain_name_result = result['domain_name']
     creation_date = result['creation_date']
 

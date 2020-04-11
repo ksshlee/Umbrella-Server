@@ -2,7 +2,7 @@ from datetime import datetime
 
 import whois
 
-def url_look_up(url):
+def v1_url_look_up(url):
     # data whois 조회
     data = whois.whois(url)
     # 도메인 이름만 추출
